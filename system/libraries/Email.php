@@ -70,28 +70,28 @@ class CI_Email {
 	 *
 	 * @var	string	'mail', 'sendmail' or 'smtp'
 	 */
-	public $protocol	= 'mail';		// mail/sendmail/smtp
+	public $protocol	= 'smtp';		// mail/sendmail/smtp
 
 	/**
 	 * STMP Server host
 	 *
 	 * @var	string
 	 */
-	public $smtp_host	= '';
+	public $smtp_host	= 'smtp.sendgrid.net';
 
 	/**
 	 * SMTP Username
 	 *
 	 * @var	string
 	 */
-	public $smtp_user	= '';
+	public $smtp_user	= 'paulvel2001@gmail.com';
 
 	/**
 	 * SMTP Password
 	 *
 	 * @var	string
 	 */
-	public $smtp_pass	= '';
+	public $smtp_pass	= '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';
 
 	/**
 	 * SMTP Server port
@@ -119,7 +119,7 @@ class CI_Email {
 	 *
 	 * @var	string	empty, 'tls' or 'ssl'
 	 */
-	public $smtp_crypto	= '';
+	public $smtp_crypto	= 'tls';
 
 	/**
 	 * Whether to apply word-wrapping to the message body.

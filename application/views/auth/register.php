@@ -11,6 +11,15 @@
     <form action="<?php echo base_url('register')?>" method="POST">
         <h1>Sign Up</h1>
         <div>
+            <?php
+            if($this->session->flashdata('message')){
+                echo'
+                <div class="alert alert-success">
+                '.$this->session->flashdata("message").'
+                </div>
+                ';
+            }   
+            ?>
             <label for="first_name">First Name:</label>
             <input type="text" name="first_name" id="first_name">
             <small><?php echo form_error('first_name');?></small>

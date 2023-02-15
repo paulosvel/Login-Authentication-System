@@ -1,6 +1,5 @@
 <?php
 defined('BASEPATH') OR exit ('No direct script access allowed');
-
 class RegisterController extends CI_Controller
 {
 
@@ -13,7 +12,7 @@ class RegisterController extends CI_Controller
 
   }
   $this->load->helper(array('form','url','string'));
-  $this->load->library('form_validation','email');
+  $this->load->library('form_validation','session','sendgrid');
   $this->load->model('UserModel');
 
  }
@@ -37,29 +36,19 @@ class RegisterController extends CI_Controller
      }
      else 
    {
+      $verification_key = md5(rand());
       $data = array(
       'first_name' => $this->input->post('first_name'),
       'last_name' => $this->input->post('last_name'),
       'email' => $this->input->post('email'),
       'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-      'verification_token' => bin2hex(random_bytes(15)),
+      'verification_key'=> $verification_key
 
      );
 
      $register_user = new UserModel;
-     $newuser = $register_user -> registerUser($data);
-    if($newuser){
-      if($this->sendmail($data)){
-        $this->session->set_flashdata('error','Check your inbox to verify your account!');
-        redirect('register');
-      }else{
-        $this->session->set_flashdata('error','We cant send you an email right now try again');
-      }
+     $register_user -> registerUser($data);
 
-    
-    }else{
-      $this->session->set_flashdata('error','Something went wrong try again');
-    }
 
      $this -> load->view('auth/login.php');
    }
@@ -70,46 +59,64 @@ class RegisterController extends CI_Controller
  
  }
 
- public function sendmail($data){
-      $config = array(
-         'protocol' => 'smtp',
-         'smtp_host' => 'smtp.sendgrid.net',
-         'smtp_user' => 'trytodo',
-         'smtp_pass' => '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',
-         'smtp_port' => '25',
-         'mailtype' => 'html',
-         'charset' => 'iso-8859-1'
-      );
-      $message = "<strong>".$data['last_name']."</strong>".anchor('register/confirm'.$data('verification_token'),'Activate your account','');
-      $this->load->library('email');
-      $this->email->set_new("\r\n");
-      $this->email->from('paulvel2001@gmail.com','trytodo');
-      $this->email->to($data['email']);
-      $this->email->subject('Verification Email');
-      $this->email->message($message);
-      $this->email->set_mailtype('html');
-      if($this->email->send()){
-        return true;
-      }
-      else {
-        return false;
-      }
- 
+ public function sendEmail($data){
+  $id = $this->user_model->insert($data);
+  if($id>0){
+  $subject = "Please verify email for login";
+ $message = "
+ <p>Hi ".$this->input->post('user_name')."</p>
+ <p>This is email verification mail from Codeigniter Login Register system. For complete registration process and login into system. First you want to verify you email by click this <a href='".base_url()."register/verify_email/".$verification_key."'>link</a>.</p>
+ <p>Once you click this link your email will be verified and you can login into system.</p>
+ <p>Thanks,</p>
+ ";
+  }
+  $config = array(
+     'protocol' => 'smtp',
+     'smtp_host' => 'smtp.sendgrid.net',
+     'smtp_user' => 'paulvel2001@gmail.com',
+     'smtp_pass' => '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',
+     'smtp_port' => '25',
+     'smtp_crypto' => 'tls',
+     'mailtype' => 'html',
+     'charset' => 'UTF-8'
+  );
+  
+  $this->load->library('email', $config);
+  $this->email->set_newline("\r\n");
+  $this->email->from('info@webslesson.info');
+  $this->email->to($this->input->post('user_email'));
+  $this->email->subject($subject);
+  $this->email->message($message);
+  if($this->email->send())
+  {
+   $this->session->set_flashdata('message', 'Check in your email for email verification mail');
+   redirect('register');
+  }
+
+   
+   else
+  {
+ $this->index();
+  }
+
+ }
+function verify_email()
+{
+if($this->uri->segment(3))
+{
+ $verification_key = $this->uri->segment(3);
+ if($this->user_model->verify_email($verification_key))
+ {
+  $data['message'] = '<h1 align="center">Your Email has been successfully verified, now you can login from <a href="'.base_url().'login">here</a></h1>';
+ }
+ else
+ {
+  $data['message'] = '<h1 align="center">Invalid Link</h1>';
+ }
+ $this->load->view('email_verification', $data);
+}
+}
 }
 
-public function verify_email($verification_token){
 
-  $this->load->model('UserModel');
-  $user = $this->UserModel->getUserByVerificationToken($verification_token);
-
-
-
-
-
-
-
-}
-
-
-}
 ?>

@@ -28,11 +28,24 @@ else {
 
   }
 
-public function getUserByVerificationToken($token)
-{
-  $query = $this->db->get_where('users', array('verification_token' => $token), 1);
-  return $query->row();
-}
+  public function verify_email($key){
+
+    $this->db->where('verification_key',$key);
+    $this->db->where('is_email_verified','no');
+    $query = $this->db->get('users');
+    if($query->num_rows()>0){
+      $data = array(
+      'is_email_verified' => 'yes'
+      );
+    $this->db->where('verification_key',$key);
+    $this->db->where('users',$data);
+    return true;
+    }
+    else{
+      return false;
+    }
+  }
+
 
 
 
