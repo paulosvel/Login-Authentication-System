@@ -1,5 +1,5 @@
 <?php
-class Login_model extends CI_Model
+class LoginModel extends CI_Model
 {
  function can_login($email, $password)
  {
@@ -9,7 +9,7 @@ class Login_model extends CI_Model
   {
    foreach($query->result() as $row)
    {
-    if($row->is_email_verified == 'yes')
+    if($row->is_email_verified == 'y')
     {
      $store_password = $this->encrypt->decode($row->password);
      if($password == $store_password)
@@ -23,7 +23,7 @@ class Login_model extends CI_Model
     }
     else
     {
-     return 'First verified your email address';
+     return 'First verify your email address';
     }
    }
   }
@@ -33,5 +33,6 @@ class Login_model extends CI_Model
   }
  }
 }
+
 
 ?>

@@ -84,21 +84,21 @@ class CI_Email {
 	 *
 	 * @var	string
 	 */
-	public $smtp_user	= 'paulvel2001@gmail.com';
+	public $smtp_user	= 'apikey';
 
 	/**
 	 * SMTP Password
 	 *
 	 * @var	string
 	 */
-	public $smtp_pass	= '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';
+	public $smtp_pass	= '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';
 
 	/**
 	 * SMTP Server port
 	 *
 	 * @var	int
 	 */
-	public $smtp_port	= 25;
+	public $smtp_port	= 587;
 
 	/**
 	 * SMTP connection timeout in seconds
@@ -141,7 +141,7 @@ class CI_Email {
 	 *
 	 * @var	string	'text' or 'html'
 	 */
-	public $mailtype	= 'text';
+	public $mailtype	= 'html';
 
 	/**
 	 * Character set (default: utf-8)
