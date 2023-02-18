@@ -14,3 +14,4 @@ $route['adminpage']['GET'] = 'Auth/AdminController/index';
 $route['create']['GET'] = 'Auth/MessageController/create';
 $route['logout']['GET'] = 'Auth/LogoutController/logout';
 $route['forgot']['GET'] = 'Auth/ForgotController/index';
+$route['register/verify_email/(:any)'] = 'Auth/RegisterController/verify_email/$1';
