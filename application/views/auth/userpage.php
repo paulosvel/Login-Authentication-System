@@ -16,7 +16,7 @@
   </head>
   <body>
   <?php if(!$this->session->has_userdata('authenticated')){}?>
-    <form class="profile" action="<?php echo site_url('profile'); ?>" method="post">
+  <form class="profile" action="<?php echo site_url('update'); ?>" method="POST">
     <div class="flex">
     <div class="label">
     <label for="first_name">First Name:</label>
