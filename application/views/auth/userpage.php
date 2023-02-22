@@ -16,7 +16,7 @@
   </head>
   <body>
   <?php if(!$this->session->has_userdata('authenticated')){}?>
-  <form class="profile" action="<?php echo site_url('update'); ?>" method="POST">
+  <form class="profile"action="<?php echo base_url('update'); ?>" method="post">
     <div class="flex">
     <div class="label">
     <label for="first_name">First Name:</label>
@@ -49,7 +49,7 @@
     </div>
     <?php echo form_error('password'); ?>
     <br><br>
-    <input type="submit" value="Update">
+    <input type="submit" value="Update" name = "update">
 </form>
 
 
