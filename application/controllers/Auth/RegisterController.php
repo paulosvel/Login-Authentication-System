@@ -13,6 +13,7 @@ class RegisterController extends CI_Controller
   }
   $this->load->helper(array('form','url','string'));
   $this->load->library(array('form_validation','session','sendgrid','email'));
+  // $this->load->library('encryption');
   $this->load->model('RegisterModel');
 
  }
@@ -36,19 +37,20 @@ class RegisterController extends CI_Controller
      }
      else 
    {
+
       $verification_key = md5(rand());
       $data = array(
       'first_name' => $this->input->post('first_name'),
       'last_name' => $this->input->post('last_name'),
       'email' => $this->input->post('email'),
-      'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+      'password' =>  password_hash($this->input->post('password'), PASSWORD_DEFAULT),
       'verification_key'=> $verification_key
 
      );
 
      $register_user = new RegisterModel;
-    //$register_user -> registerUser($data);
-     $id = $this->RegisterModel->insert($data);
+    //  $register_user -> registerUser($data);
+     $id = $this->RegisterModel->registerUser($data);
      if ($id>0){
       $subject = "Please verify email for login";
       $message = "

@@ -2,11 +2,11 @@
 class RegisterModel extends CI_Model
 {
 
-  public function insert($data)
-    {
-     $this->db->insert('users', $data);
-     return $this->db->insert_id();
-    }
+  public function registerUser($data)
+  {
+    return $this->db->insert('users',$data);
+
+  }
 public function verify_email($key)
  {
   $this->db->where('verification_key', $key);

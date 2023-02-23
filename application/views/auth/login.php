@@ -41,7 +41,6 @@
         <button type="ok">Login</button>
     <div class="forgot"><a href="<?php echo base_url('forgot'); ?>">Forgot Password</a></div>
 </div>
-    </div>
     </form>
 </main>
 </body>

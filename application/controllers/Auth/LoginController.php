@@ -27,8 +27,8 @@ public function index()
 
 public function login()
 {
-
-$this->form_validation->set_rules('email','Email Address','required|trim|valid_email');
+  $this->load->model('LoginModel');
+$this->form_validation->set_rules('email','Email Address','required|valid_email');
 $this->form_validation->set_rules('password','Password','required');
 if ($this->form_validation->run()==FALSE)
 {
@@ -38,12 +38,13 @@ $this->index();
 }
 else
 {
-
+  $this->load->model('LoginModel');
   $data = [
    'email'=> $this->input->post('email'),
-   'password'=> $this->input->post('password')];
-    // $user = new LoginModel;
-    $result = $this->LoginModel->can_login($this->input->post('email'), $this->input->post('password'));
+   'password'=> $this->input->post('password')
+  ];
+
+   $result = $this->LoginModel->login($data);
    if($result != FALSE){
     $auth_userdetails = [
       'first_name' => $result->first_name,
@@ -72,12 +73,11 @@ else
 
 }
 
+
 public function forgot() {
   $this->load->view('auth/forgot.php');
   $this->load->view('template/header.php');
 }
-
-
 }
 
 ?>
