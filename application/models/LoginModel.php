@@ -2,24 +2,23 @@
 class LoginModel extends CI_Model {
 
 
-    public function login($data)
-    {
-        $this->db->select('*');
-        $this->db->where('email',$data['email']);
-        $this->db->from('users');
-        $this->db->limit(1);
-        $query = $this->db->get();
-        if ($query->num_rows() == 1) {
-            $row = $query->row();
-            if (password_verify($data['password'], $row->password)) {
-                echo "Password verified\n";
+public function login($email, $password) {
+    // Validate
+    $this->db->where('email', $email);
 
-                unset($row->password); // remove the password hash from the result
-                return $row;
-            }
+    $result = $this->db->get('users');
+
+    if ($result->num_rows() == 1) {
+        $row = $result->row(0);
+        if (password_verify($password, $row->password)) {
+            return $row->id;
+        } else {
+            return false;
         }
+    } else {
         return false;
     }
+}
     
     }
     

@@ -7,13 +7,13 @@ class LoginController extends CI_CONTROLLER{
     public function __construct()
     {
     parent::__construct();
-    if ($this->session->has_userdata('authenticated')){
+    if ($this->session->has_userdata('logged_in')){
       $this->session->set_flashdata('status','You are already logged in');
       redirect(base_url('userpage'));
 
     }
     $this->load->helper('form');
-    $this->load->library('form_validation');
+    $this->load->library('form_validation','email');
     $this->load->model('LoginModel');
 
     }
@@ -25,52 +25,43 @@ public function index()
 }
 
 
-public function login()
-{
-  $this->load->model('LoginModel');
-$this->form_validation->set_rules('email','Email Address','required|valid_email');
-$this->form_validation->set_rules('password','Password','required');
-if ($this->form_validation->run()==FALSE)
-{
-$this->index();
+public function login(){
+  $this->form_validation->set_rules('email', 'email', 'required|valid_email');
+  $this->form_validation->set_rules('password', 'Password', 'required');
 
+  if($this->form_validation->run() == FALSE){
+    $this->index();
+  } else {
+    
+    // Get username
+    $email = $this->input->post('email');
+    // Get and encrypt the password
+    $password =   $this->input->post('password');
 
-}
-else
-{
-  $this->load->model('LoginModel');
-  $data = [
-   'email'=> $this->input->post('email'),
-   'password'=> $this->input->post('password')
-  ];
+    // Login user
+    $user_id = $this->LoginModel->login($email, $password);
 
-   $result = $this->LoginModel->login($data);
-   if($result != FALSE){
-    $auth_userdetails = [
-      'first_name' => $result->first_name,
-      'last_name' => $result->last_name,
-      'email' => $result->email,
+    if($user_id){
+      // Create session
+      $user_data = array(
+        'user_id' => $user_id,
+        'username' => $email,
+        'logged_in' => true
+      );
 
+      $this->session->set_userdata($user_data);
 
-    ];
-      $this->session->set_userdata('authenticated','1');
-      $this->session->set_userdata('auth_user',$auth_userdetails);
-      $this->session->set_flashdata('status','Successful Login');
+      // Set message
+      $this->session->set_flashdata('status', 'You are now logged in');
+
       redirect(base_url('userpage'));
+    } else {
+      // Set message
+      $this->session->set_flashdata('status', 'Login is invalid');
 
-
-   }
-   else {
-
-    $this->session->set_flashdata('status','Wrong Email or Password');
-    redirect(base_url('login'));
-   }
-
-
-
-}
-
-
+      redirect(base_url('login'));
+    }		
+  }
 }
 
 

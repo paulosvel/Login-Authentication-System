@@ -15,7 +15,9 @@
     </style>
   </head>
   <body>
-  <?php if(!$this->session->has_userdata('authenticated')){}?>
+  <?php if(!$this->session->has_userdata('logged_in')){}?>
+
+
   <form class="profile"action="<?php echo base_url('update'); ?>" method="post">
     <div class="flex">
     <div class="label">
@@ -50,6 +52,9 @@
     <?php echo form_error('password'); ?>
     <br><br>
     <input type="submit" value="Update" name = "update">
+    <div class="alert alert-success">
+        <?= ($this->session->flashdata('status')); ?>
+        </div>
 </form>
 
 

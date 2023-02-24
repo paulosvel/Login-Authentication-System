@@ -39,7 +39,7 @@
     </style>
   </head>
   <body>
-     <?php if($this->session->has_userdata('authenticated')==TRUE){?>
+     <?php if($this->session->has_userdata('logged_in')==true){?>
 <nav class="navbar navbar-default">
 
 <div class="tab"> 
