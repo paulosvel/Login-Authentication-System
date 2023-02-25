@@ -5,35 +5,30 @@ class MessageController extends CI_Controller {
         $this->load->view('template/header');
         $this->load->view('auth/form');
     }
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->library(array('session', 'form_validation'));
+        $this->load->helper('form');
+    }
         public function create(){
-            $this->load->helper(array('form'));
-            $this->load->library(array('form_validation','session'));
-            // $this->load->library('encryption');
+            $this->form_validation->set_rules('body_text', 'Body Text', 'required');
             $this->load->model('MessageModel');
-            // Check login
+             // Check login
             if(!$this->session->userdata('logged_in')){
                 redirect('login');
             }
-    
-            $data['messages'] = $this->MessageModel->create();
-    
-            $this->form_validation->set_rules('body_text', 'body_text', 'required');
-    
-            if($this->form_validation->run() === FALSE){
+            if($this->form_validation->run() == FALSE){
+                $this->session->set_flashdata('status', 'Message cannot be empty.');
+                redirect('form');  
+            } else {
+                // Set message
+                $data['messages'] = $this->MessageModel->create();
                 $this->load->view('template/header');
                 $this->load->view('auth/form', $data);
-            } else {
-    
-                // Set message
                 $this->session->set_flashdata('status', 'Your message has been sent');
-    
-                redirect('create');
+                redirect('form');
             }
         }
-    
-    
-    
-    
-    
     }
     ?>
