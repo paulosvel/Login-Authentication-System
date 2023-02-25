@@ -1,3 +1,8 @@
+<?php
+if(!$this->session->has_userdata('logged_in')){
+    redirect('login');
+}
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -15,9 +20,6 @@
     </style>
   </head>
   <body>
-  <?php if(!$this->session->has_userdata('logged_in')){}?>
-
-
   <form class="profile"action="<?php echo base_url('update'); ?>" method="post">
     <div class="flex">
     <div class="label">
