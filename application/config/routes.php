@@ -25,3 +25,6 @@ $route['forgot']['GET'] = 'Auth/ForgotController/index';
 $route['register/verify_email/(:any)'] = 'Auth/RegisterController/verify_email/$1';
 
 $route['update'] = 'Auth/UpdateController/update';
+
+$route['history'] = 'Auth/MessageController/message_history';
+// $route['history/(:any)'] = 'Auth/MessageController/message_history/$1';

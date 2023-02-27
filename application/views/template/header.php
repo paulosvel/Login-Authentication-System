@@ -45,7 +45,7 @@
 <div class="tab"> 
       <button class="tablinks" onclick="location.href='userpage'">My Profile</button>
       <button class="tablinks" onclick="location.href='form'">Submit New Form</button>
-      <button class="tablinks" onclick="location.href='History'">Message History</button>
+      <button class="tablinks" onclick="location.href='history'">Message History</button>
       <button class="tablinks" onclick="location.href='logout'">Logout</button>
      </div> 
 <?php } ?>
