@@ -13,7 +13,6 @@ class RegisterController extends CI_Controller
   }
   $this->load->helper(array('form','url','string'));
   $this->load->library(array('form_validation','session','sendgrid','email'));
-  // $this->load->library('encryption');
   $this->load->model('RegisterModel');
 
  }
