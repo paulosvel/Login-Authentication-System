@@ -24,7 +24,6 @@ class ForgotModel extends CI_Model {
         if ($query->num_rows() == 1) {
             $user = $query->row();
 
-            // Check if the token is expired
             $expires_at = strtotime($user->reset_token_created_at) + 3600; 
             if (time() <= $expires_at) {
                 return $user;
