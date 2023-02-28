@@ -39,12 +39,12 @@
     </style>
   </head>
   <body>
-     <?php if($this->session->userdata('logged_in')==true){?>
+     <?php if($this->session->has_userdata('logged_in')==true){?>
 <nav class="navbar navbar-default">
 
 <div class="tab"> 
       <button class="tablinks" onclick="location.href='userpage'">My Profile</button>
-      <button class="tablinks" onclick="location.href='form'">Submit New Form</button>
+      <button class="tablinks" onclick="location.href='form'">Customers</button>
       <button class="tablinks" onclick="location.href='history'">Message History</button>
       <button class="tablinks" onclick="location.href='logout'">Logout</button>
      </div> 

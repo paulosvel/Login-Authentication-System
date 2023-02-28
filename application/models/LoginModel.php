@@ -20,5 +20,16 @@ public function login($email, $password) {
     }
 }
     
+public function get_user_role($user_id) {
+    $this->db->select('role_as');
+    $this->db->where('id', $user_id);
+    $query = $this->db->get('users');
+    if ($query->num_rows() == 1) {
+        $row = $query->row();
+        return $row->role_as;
+    } else {
+        return false;
+    }
+}
     }
     

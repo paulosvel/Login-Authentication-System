@@ -13,7 +13,7 @@ $route['login']['POST'] = 'Auth/LoginController/login';
 
 $route['userpage']['GET'] = 'Auth/UserController/index';
 
-$route['adminpage']['GET'] = 'Auth/AdminController/index';
+$route['adminpage'] = 'Auth/AdminController/index';
 
 $route['form'] = 'Auth/MessageController/index';
 $route['create'] = 'Auth/MessageController/create';
