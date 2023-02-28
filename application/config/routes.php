@@ -21,6 +21,7 @@ $route['create'] = 'Auth/MessageController/create';
 $route['logout']['GET'] = 'Auth/LogoutController/logout';
 
 $route['forgot']['GET'] = 'Auth/ForgotController/index';
+$route['forgot']['POST'] = 'Auth/ForgotController/reset_password';
 
 $route['register/verify_email/(:any)'] = 'Auth/RegisterController/verify_email/$1';
 

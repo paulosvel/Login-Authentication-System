@@ -22,7 +22,7 @@
         </div>
 
         <div class = "login">
-        <button type="ok">Remind me </button>
+        <button type="ok">Remind me ?</button>
     </div>
     </form>
 </main>
