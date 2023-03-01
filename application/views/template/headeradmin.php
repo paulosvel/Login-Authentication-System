@@ -43,8 +43,8 @@
 <nav class="navbar navbar-default">
 
 <div class="tab"> 
-      <button class="tablinks" onclick="location.href='userpage'">My Profile</button>
-      <button class="tablinks" onclick="location.href='form'">Customers</button>
+      <button class="tablinks" onclick="location.href='adminpage'">My Profile</button>
+      <button class="tablinks" onclick="location.href='customers'">Customers</button>
       <button class="tablinks" onclick="location.href='history'">Message History</button>
       <button class="tablinks" onclick="location.href='logout'">Logout</button>
      </div> 

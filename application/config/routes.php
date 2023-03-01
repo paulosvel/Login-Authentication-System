@@ -15,6 +15,8 @@ $route['login']['POST'] = 'Auth/LoginController/login';
 $route['userpage']['GET'] = 'Auth/UserController/index';
 
 $route['adminpage'] = 'Auth/AdminController/index';
+$route['customers'] = 'Auth/AdminController/customers';
+
 
 $route['form'] = 'Auth/MessageController/index';
 $route['create'] = 'Auth/MessageController/create';
