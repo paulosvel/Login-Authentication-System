@@ -27,7 +27,7 @@ else{
 
 }
 
-public function customers()
+public function messages()
 {
     if (!$this->session->userdata('logged_in')) {
         redirect('login');
@@ -44,6 +44,18 @@ public function customers()
     $this->load->view('template/headeradmin');
     $this->load->view('auth/customers', $data);
 }
+
+public function areyousure(){
+    $this->load->view('auth/areyousure');
+}
+
+public function delete_user() {
+    $user_id = $this->input->post('user_id');
+    $this->load->model('CustomersModel');
+    $this->CustomersModel->delete_user($user_id);
+    redirect('customers');
+}
+
 
 }
 

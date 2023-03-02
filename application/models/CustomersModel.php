@@ -23,5 +23,9 @@ class CustomersModel extends CI_Model{
     
         return $messages;
     }
-
+    public function delete_user() {
+        $user_id = $this->input->post('user_id');
+        $this->db->where('id', $user_id);
+        $this->db->delete('users');
+      }
 }
