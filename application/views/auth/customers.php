@@ -25,30 +25,30 @@
     </style>
 </head>
 <ul>
-<?php foreach ($messages as $message): ?>
+<?php foreach ($users as $user): ?>
     <li>
         <div class="position">
-            <button class="button" onclick="toggleMessage('<?php echo $message['id']; ?>')">
+            <button class="button" onclick="toggleuser('<?php echo $user['id']; ?>')">
                 <div class="position2">
                     <div class="position3">
                         <label>Customer&nbsp;</label>
-                        <?php echo $message['first_name']; ?>
+                        <?php echo $user['first_name']; ?>
                     </div>
-                    <label> Last Interactive:&nbsp;</label>
-                    <?php echo $message['created_at']; ?>
+                    <!-- <label> Last Interactive:&nbsp;</label>
+                    <?php echo $user['created_at']; ?> -->
                 </div>
             </button>
-            <?php if ($message['expanded']): ?>
+            <?php if (isset($_GET['selected_user_id']) && $_GET['selected_user_id'] == $user['id']): ?>
                 <div>
                     <form method="post" action="<?php echo base_url('customers/delete_user'); ?>">
-                        <input type="hidden" name="user_id" value="<?php echo $message['user_id']; ?>">
+                        <input type="hidden" name="user_id" value="<?php echo $user['id']; ?>">
                         <button type="submit">Delete User</button>
                     </form>
-                    <button type="button" onclick="location.href='<?php echo base_url('customers/edit_user/'.$message['id']); ?>'">Edit User</button>
-                    <button type="button">Show User's Messages</button>
-                    <label>Name:&nbsp;</label><?php echo $message['first_name']; ?>
-                    <label>Last Name:&nbsp;</label><?php echo $message['last_name']; ?>
-                    <label>Email:&nbsp;</label><?php echo $message['email']; ?>
+                    <button type="button" onclick="location.href='<?php echo base_url('customers/edit_user/'.$user['id']); ?>'">Edit User</button>
+                    <button type="button">Show User's users</button>
+                    <label>Name:&nbsp;</label><?php echo $user['first_name']; ?>
+                    <label>Last Name:&nbsp;</label><?php echo $user['last_name']; ?>
+                    <label>Email:&nbsp;</label><?php echo $user['email']; ?>
                 </div>
             <?php endif; ?>
         </div>
@@ -57,7 +57,7 @@
 </ul>
 
 <script>
-    function toggleMessage(messageId) {
-        window.location.href = '<?php echo base_url('customers'); ?>?selected_message_id=' + messageId;
+    function toggleuser(userId) {
+        window.location.href = '<?php echo base_url('customers'); ?>?selected_user_id=' + userId;
     }
 </script>

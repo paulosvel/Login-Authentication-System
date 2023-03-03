@@ -15,9 +15,10 @@ $route['login']['POST'] = 'Auth/LoginController/login';
 $route['userpage']['GET'] = 'Auth/UserController/index';
 
 $route['adminpage'] = 'Auth/AdminController/index';
-$route['customers'] = 'Auth/AdminController/messages';
+$route['customers'] = 'Auth/AdminController/customers';
 $route['areyousure'] = 'Auth/AdminController/areyousure';
 $route['customers/delete_user'] = 'Auth/AdminController/delete_user';
+$route['customers/edit_user'] = 'Auth/AdminController/edit_user';
 
 
 $route['form'] = 'Auth/MessageController/index';

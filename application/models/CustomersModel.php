@@ -23,9 +23,35 @@ class CustomersModel extends CI_Model{
     
         return $messages;
     }
+
+    public function customers() {
+        $query = $this->db->get('users');
+        return $query->result_array();
+    }
+    
     public function delete_user() {
         $user_id = $this->input->post('user_id');
         $this->db->where('id', $user_id);
         $this->db->delete('users');
       }
+
+      public function get_user($user_id) {
+        $query = $this->db->get_where('users', array('id' => $user_id));
+        return $query->row_array();
+    }
+    
+      public function edit_user(){
+
+        $user_id = $this->session->userdata('user_id');
+        $data = array(
+            'first_name' => $this->input->post('first_name'),
+            'last_name' => $this->input->post('last_name'),
+            'email' => $this->input->post('email'),
+            'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT)
+        );
+
+        $this->db->where('id', $user_id); 
+        return $this->db->update('users', $data);
+    }
 }
+?>

@@ -45,6 +45,23 @@ public function messages()
     $this->load->view('auth/customers', $data);
 }
 
+public function customers()
+{
+    if (!$this->session->userdata('logged_in')) {
+        redirect('login');
+    }
+
+    $this->load->model('CustomersModel');
+
+    $user_id = $this->session->userdata('id');
+    $first_name = $this->session->userdata('first_name');
+    $selected_user_id = $this->input->get('selected_user_id');
+    $data['users'] = $this->CustomersModel->customers($user_id,$selected_user_id,$first_name);
+
+    $this->load->view('template/headeradmin');
+    $this->load->view('auth/customers', $data);
+}
+
 public function areyousure(){
     $this->load->view('auth/areyousure');
 }
@@ -56,10 +73,36 @@ public function delete_user() {
     redirect('customers');
 }
 
+public function edit_user($user_id) {
+        
+    // Check if user is logged 
 
+    // Load form validation library
+    $this->load->library('form_validation');
+
+    // Set validation rules
+    $this->form_validation->set_rules('first_name', 'First Name', 'required');
+    $this->form_validation->set_rules('last_name', 'Last Name', 'required');
+    $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+    $this->form_validation->set_rules('password', 'Password', 'required');
+
+    if ($this->form_validation->run() == false) {
+        // Load view to display form
+        $data['user'] = $this->CustomersModel->get_user($user_id);
+        $this->load->view('auth/edit_user', $data);
+    } else {
+        // Get form data
+        $first_name = $this->input->post('first_name');
+        $last_name = $this->input->post('last_name');
+        $email = $this->input->post('email');
+        $password = $this->input->post('password');
+
+        // Update user information in database
+        $this->CustomersModel->edit_user($user_id, $first_name, $last_name, $email, $password);
+
+    }
 }
 
 
-
-
+}
 ?>
