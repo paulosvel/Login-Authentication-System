@@ -74,11 +74,8 @@ public function delete_user() {
 }
 
 public function edit_user($user_id) {
-        
-    // Check if user is logged 
-
-    // Load form validation library
     $this->load->library('form_validation');
+    $this->load->model('CustomersModel');
 
     // Set validation rules
     $this->form_validation->set_rules('first_name', 'First Name', 'required');
@@ -89,7 +86,7 @@ public function edit_user($user_id) {
     if ($this->form_validation->run() == false) {
         // Load view to display form
         $data['user'] = $this->CustomersModel->get_user($user_id);
-        $this->load->view('auth/edit_user', $data);
+        $this->load->view('auth/customers', $data);
     } else {
         // Get form data
         $first_name = $this->input->post('first_name');
@@ -99,9 +96,10 @@ public function edit_user($user_id) {
 
         // Update user information in database
         $this->CustomersModel->edit_user($user_id, $first_name, $last_name, $email, $password);
-
+        redirect(base_url('customers'));
     }
 }
+
 
 
 }
