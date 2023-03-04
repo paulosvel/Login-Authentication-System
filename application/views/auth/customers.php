@@ -79,9 +79,11 @@
     function toggleuser(userId) {
         window.location.href = '<?php echo base_url('customers'); ?>?selected_user_id=' + userId;
     }
-    
+</script>
+
+<script>    
     function toggleEditForm(userId) {
-        var form = document.getElementById('edit-form-' + userId);
+        const form = document.getElementById('edit-form-' + userId);
         if (form.style.display === 'none') {
             form.style.display = 'block';
         } else {

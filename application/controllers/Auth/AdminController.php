@@ -42,7 +42,7 @@ public function messages()
     $data['messages'] = $this->CustomersModel->get_messages($user_id,$selected_message_id,$first_name);
 
     $this->load->view('template/headeradmin');
-    $this->load->view('auth/customers', $data);
+    $this->load->view('auth/customersmessages', $data);
 }
 
 public function customers()
@@ -99,6 +99,8 @@ public function edit_user($user_id) {
         redirect(base_url('customers'));
     }
 }
+
+
 
 
 
