@@ -16,7 +16,6 @@ class CustomersModel extends CI_Model{
     
         $messages = $query->result_array();
     
-        // Set 'expanded' field based on some condition
         foreach ($messages as &$message) {
             $message['expanded'] = ($message['id'] === $selected_message_id);
         }

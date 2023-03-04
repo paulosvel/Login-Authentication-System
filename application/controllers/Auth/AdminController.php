@@ -35,7 +35,6 @@ public function messages()
 
     $this->load->model('CustomersModel');
 
-    // Get the user's messages
     $user_id = $this->session->userdata('user_id');
     $first_name = $this->session->userdata('first_name');
     $selected_message_id = $this->input->get('selected_message_id');
@@ -84,11 +83,9 @@ public function edit_user($user_id) {
     $this->form_validation->set_rules('password', 'Password', 'required');
 
     if ($this->form_validation->run() == false) {
-        // Load view to display form
         $data['user'] = $this->CustomersModel->get_user($user_id);
         $this->load->view('auth/customers', $data);
     } else {
-        // Get form data
         $first_name = $this->input->post('first_name');
         $last_name = $this->input->post('last_name');
         $email = $this->input->post('email');
@@ -103,7 +100,6 @@ public function edit_user($user_id) {
 public function message_historyadmin(){
     $this->load->model('CustomersModel');
 
-    // Get the user's messages
     $user_id = $this->session->userdata('user_id');
     $selected_message_id = $this->input->get('selected_message_id');
     $data['messages'] = $this->CustomersModel->get_messages($user_id,$selected_message_id);

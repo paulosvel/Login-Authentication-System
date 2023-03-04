@@ -42,11 +42,11 @@
 <nav class="navbar navbar-default">
 
 <div class="tab"> 
-      <button class="tablinks" onclick="location.href='adminpage'">My Profile</button>
-      <button class="tablinks" onclick="location.href='customers'">Customers</button>
-      <button class="tablinks" onclick="location.href='historyadmin'">Message History</button>
-      <button class="tablinks" onclick="location.href='logout'">Logout</button>
-     </div> 
+  <button class="tablinks" onclick="window.location.href='http://localhost/trytodo/adminpage'">My Profile</button>
+  <button class="tablinks" onclick="window.location.href='http://localhost/trytodo/customers'">Customers</button>
+  <button class="tablinks" onclick="window.location.href='http://localhost/trytodo/historyadmin'">Message History</button>
+  <button class="tablinks" onclick="window.location.href='http://localhost/trytodo/logout'">Logout</button>
+</div>
 
 </nav>
 </body>
