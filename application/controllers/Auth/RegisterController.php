@@ -63,14 +63,14 @@ class RegisterController extends CI_Controller
       'protocol' => 'smtp',
       'smtp_host' => 'smtp.sendgrid.net',
       'smtp_user' => 'apikey',
-      'smtp_pass' => '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',
+      'smtp_pass' => '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',
       'smtp_port' => '587',
       'smtp_crypto' => 'tls',
       'mailtype' => 'html'
    );
    $this->load->library('email',$config);
    $this->email->set_newline("\r\n");
-   $this->email->from('paul2001vel@gmail.com');
+   $this->email->from('paulvel2001@gmail.com');
    $this->email->to($this->input->post('email'));
    $this->email->subject($subject);
    $this->email->message($message);

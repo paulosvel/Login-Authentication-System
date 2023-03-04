@@ -28,15 +28,15 @@ class ForgotController extends CI_CONTROLLER
         $config = array(
             'protocol' => 'smtp',
             'smtp_host' => 'smtp.sendgrid.net',
-            'smtp_user' => 'your username here',
-            'smtp_pass' => 'yourpasshere',
+            'smtp_user' => 'apikey',
+            'smtp_pass' => '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',
             'smtp_port' => '587',
             'smtp_crypto' => 'tls',
             'mailtype' => 'html'
          );
         $reset_link = base_url('forgot/reset_password?token=' . $token);
         $this->load->library('email', $config);
-        $this->email->from('youremailhere');
+        $this->email->from('paulvel2001@gmail.com');
         $this->email->to($email);
         $this->email->subject('Reset Password');
         $this->email->message('Click the following link to reset your password: ' . $reset_link);
