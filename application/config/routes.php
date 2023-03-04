@@ -39,4 +39,5 @@ $route['reset_password/(:any)'] = 'Auth/ForgotController/reset_password/$1';
 $route['update'] = 'Auth/UpdateController/update';
 
 $route['history'] = 'Auth/MessageController/message_history';
+$route['historyadmin'] = 'Auth/AdminController/message_historyadmin';
 // $route['history/(:any)'] = 'Auth/MessageController/message_history/$1';

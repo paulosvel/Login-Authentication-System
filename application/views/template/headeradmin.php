@@ -39,16 +39,15 @@
     </style>
   </head>
   <body>
-     <?php if($this->session->has_userdata('logged_in')==true){?>
 <nav class="navbar navbar-default">
 
 <div class="tab"> 
       <button class="tablinks" onclick="location.href='adminpage'">My Profile</button>
       <button class="tablinks" onclick="location.href='customers'">Customers</button>
-      <button class="tablinks" onclick="location.href='history'">Message History</button>
+      <button class="tablinks" onclick="location.href='historyadmin'">Message History</button>
       <button class="tablinks" onclick="location.href='logout'">Logout</button>
      </div> 
-<?php } ?>
+
 </nav>
 </body>
 </html>

@@ -60,5 +60,7 @@ class CustomersModel extends CI_Model{
     
         $data['user'] = $this->db->get_where('users', array('id' => $user_id))->row_array();
     }
+
+    
 }
 ?>

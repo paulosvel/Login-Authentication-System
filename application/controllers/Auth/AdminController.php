@@ -100,7 +100,18 @@ public function edit_user($user_id) {
     }
 }
 
+public function message_historyadmin(){
+    $this->load->model('CustomersModel');
 
+    // Get the user's messages
+    $user_id = $this->session->userdata('user_id');
+    $selected_message_id = $this->input->get('selected_message_id');
+    $data['messages'] = $this->CustomersModel->get_messages($user_id,$selected_message_id);
+
+    $this->load->view('template/headeradmin');
+    $this->load->view('auth/historyadmin', $data);
+
+}
 
 
 
