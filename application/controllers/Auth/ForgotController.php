@@ -29,7 +29,7 @@ class ForgotController extends CI_CONTROLLER
             'protocol' => 'smtp',
             'smtp_host' => 'smtp.sendgrid.net',
             'smtp_user' => 'your_username',
-            'smtp_pass' => 'your_password',
+            'smtp_pass' => 'your_pass',
             'smtp_port' => '587',
             'smtp_crypto' => 'tls',
             'mailtype' => 'html'
