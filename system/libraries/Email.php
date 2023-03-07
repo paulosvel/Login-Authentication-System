@@ -84,14 +84,14 @@ class CI_Email {
 	 *
 	 * @var	string
 	 */
-	public $smtp_user	= 'apikey';
+	public $smtp_user	= 'your_username';
 
 	/**
 	 * SMTP Password
 	 *
 	 * @var	string
 	 */
-	public $smtp_pass	= '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';
+	public $smtp_pass	= 'your_pass';
 
 	/**
 	 * SMTP Server port
